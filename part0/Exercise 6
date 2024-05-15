@@ -1,0 +1,15 @@
+sequenceDiagram
+    participant browser
+    participant server
+
+    Note right of browser: Before the new note is sent to the server these following steps occured:
+                           1. The user clicks the form's submit button
+                           2. The page's form element is fetched
+                           3. An event handler is called to handle the form's submit event, overriding the default handling
+                           4. The event handler creates a new note, adds it to the list of notes, renders it on the page and sends the new note to the server
+    browser->>server: POST https://studies.cs.helsinki.fi/exampleapp/new_note_spa
+    activate server
+    Note right of browser: Data is sent as a json String
+    server-->>browser: Status Code 201 - {"message":"note created"}
+    Note left of server: Server recognizes the data as a json String and correctly parses it
+    deactivate server
