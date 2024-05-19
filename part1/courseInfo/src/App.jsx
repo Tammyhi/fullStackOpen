@@ -1,51 +1,62 @@
 const Header = (props) => {
-  return(
+  return (
     <>
-      <h1>{props.course}</h1>
+      <h1>{props.array.name}</h1>
     </>
   )
 }
 
 const Content = (props) => {
-  return(
+  return (
     <>
-      <Part entry={props.array[0]}/>
-      <Part entry={props.array[1]}/>
-      <Part entry={props.array[2]}/> 
+      <Part entry={props.array.parts[0]} />
+      <Part entry={props.array.parts[1]} />
+      <Part entry={props.array.parts[2]} />
     </>
   )
 }
 
 const Total = (props) => {
-  return(
+  return (
     <>
-      <p>Number of exercises {props.array[0].numE + props.array[1].numE+ props.array[2].numE}</p>
+      <p>Number of exercises {props.array.parts[0].exercises + props.array.parts[1].exercises + props.array.parts[2].exercises}</p>
     </>
   )
 }
 
 const Part = (props) => {
-  return(
+  return (
     <>
-      <p>{props.entry.partT} {props.entry.numE}</p>
+      <p>{props.entry.name} {props.entry.exercises}</p>
     </>
   )
 }
 
 const App = () => {
-  const course = 'Half Stack application development'
-  const parts = [
-    {partT: 'Fundamentals of React', numE: 10},
-    {partT: 'Using props to pass data', numE: 7},
-    {partT: 'State of a component', numE: 14},
-  ]
-  return (
-    <>
-      <Header course={course}/> 
-      <Content array={parts}/>
-      <Total array={parts}/>
-    </>
-  )
+  const course = {
+    name: 'Half Stack application development',
+    parts: [
+      {
+        name: 'Fundamentals of React',
+        exercises: 10
+      },
+      {
+        name: 'Using props to pass data',
+        exercises: 7
+      },
+      {
+        name: 'State of a component',
+        exercises: 14
+      }
+    ]
+  }
+return (
+  <>
+    <Header array={course} />
+    <Content array={course} />
+    <Total array={course} />
+  </>
+)
 }
 
 export default App
